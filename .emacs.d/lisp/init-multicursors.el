@@ -6,6 +6,8 @@
 
 ; Increase selected region by semantic units
 (use-package expand-region
+  :ensure t
+  :defer 10
   :bind (("C-@" . er/expand-region)))
 
 ; Multiple cursors
