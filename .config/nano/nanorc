@@ -1,0 +1,42 @@
+bind ^o mark          main
+bind ^j left          main
+bind ^g nextword      main
+bind ^h prevword      main
+bind ^u pageup        all
+bind ^v pagedown      all
+bind ^y paste         main
+bind ^q copy          main
+bind ^w cut           main
+bind ^l chopwordright main
+bind ^z undo          main
+bind ^s findnext      all
+bind ^r findprevious  all
+bind ^t nextbuf       main
+bind ^b prevbuf       all
+bind ^/ indent        main
+bind ^\ unindent      main
+
+bind M-s whereis      all
+bind M-z redo         main
+bind M-q justify      main
+bind M-c comment      main
+
+# Available
+# ^c
+
+set tabsize 4
+set tabstospaces
+set cutfromcursor
+set trimblanks
+set multibuffer
+set quickblank
+
+set wordchars "_"
+# set wordbounds "<>()[]{}"
+# set brackets ""')>]}""'
+# set matchbrackets "(<[{)>]}""])"
+
+include "~/.config/nano/yaml.nanorc"
+include "~/.config/nano/markdown.nanorc"
+include "~/.config/nano/asciidoc.nanorc"
+include "~/.config/nano/dockerfile.nanorc"
