@@ -37,9 +37,13 @@ set wordchars "_"
 # set brackets ""')>]}""'
 # set matchbrackets "(<[{)>]}""])"
 
-include "~/.config/nano/yaml.nanorc"
-include "~/.config/nano/markdown.nanorc"
-include "~/.config/nano/asciidoc.nanorc"
-include "~/.config/nano/dockerfile.nanorc"
-
-include /usr/local/share/nano/*.nanorc
+# Location is different for pre-installed syntax highlighting files
+# between HomeBrew (MacOS) and Linux. And it seems that HomeBrew doesn't
+# automatically include their pre-installed syntax highlighting files 
+# while Linux does. To share a single nanorc setup between HomeBrew and
+# Linux keep a subfolder of all the syntax highlighting files locally.
+# Syntax files came from this repo and were copied into highlighters
+# subfoldder.
+#     url = https://github.com/scopatz/nanorc.git
+#
+include "~/.config/nano/highlighters/*.nanorc"
