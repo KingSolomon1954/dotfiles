@@ -12,7 +12,7 @@ bind ^z undo          main
 bind ^s findnext      all
 bind ^r findprevious  all
 bind ^t nextbuf       main
-bind ^b prevbuf       all
+bind ^b prevword      all
 bind ^/ indent        main
 bind ^\ unindent      main
 
@@ -30,6 +30,7 @@ set cutfromcursor
 set trimblanks
 set multibuffer
 set quickblank
+set zap
 
 set wordchars "_"
 # set wordbounds "<>()[]{}"
@@ -40,3 +41,5 @@ include "~/.config/nano/yaml.nanorc"
 include "~/.config/nano/markdown.nanorc"
 include "~/.config/nano/asciidoc.nanorc"
 include "~/.config/nano/dockerfile.nanorc"
+
+include /usr/local/share/nano/*.nanorc

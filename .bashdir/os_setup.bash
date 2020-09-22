@@ -7,19 +7,16 @@
 #
 # --------------------------------------------------
 
-setupOsType()
-{
-    if echo ${OSTYPE} | grep -q -i "darwin" ; then
-        TESTABLE_OSTYPE="darwin"
-    elif echo ${OSTYPE} | grep -q -i "linux" ; then
-        TESTABLE_OSTYPE="linux"
-    elif echo ${OSTYPE} | grep -q -i "cygwin"; then
-        TESTABLE_OSTYPE="cygwin"
-    else
-        TESTABLE_OSTYPE="unknown"
-        echo "Unhandled OSTYPE in file: os.bash"
-    fi
-}
+if echo ${OSTYPE} | grep -q -i "darwin" ; then
+    TESTABLE_OSTYPE="darwin"
+elif echo ${OSTYPE} | grep -q -i "linux" ; then
+    TESTABLE_OSTYPE="linux"
+elif echo ${OSTYPE} | grep -q -i "cygwin"; then
+    TESTABLE_OSTYPE="cygwin"
+else
+    TESTABLE_OSTYPE="unknown"
+    echo "Unhandled OSTYPE in file: os.bash"
+fi
 
 # --------------------------------------------------
 
@@ -50,5 +47,3 @@ isCygwin()
 }
 
 # --------------------------------------------------
-
-setupOsType
