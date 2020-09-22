@@ -149,4 +149,10 @@ if ! isCygwin; then
     fi
 fi
 
+# prefer lightweight nano if have it
+if have nano; then
+    export EDITOR=nano
+fi
+
+
 # --------------------------------------------------
