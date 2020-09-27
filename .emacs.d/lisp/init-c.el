@@ -12,6 +12,8 @@
                            (setq c-basic-offset 4)
                            (abbrev-mode -1))))
 
+(use-package cmake-mode)
+
 ; init runs before package is loaded
 ; config runs after package is loaded
 (use-package ggtags
