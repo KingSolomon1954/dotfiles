@@ -6,7 +6,7 @@
 
 # If p4 in path then Perforce is installed.
 #
-if have p4; then
+if have p4 || have p4vc; then
     export P4CONFIG=.p4config
 fi
 
