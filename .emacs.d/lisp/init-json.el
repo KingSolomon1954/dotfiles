@@ -18,17 +18,22 @@
 ; Supports normal markdown and GFM (Github Flavored Markdown).
 (use-package yaml-mode
   :ensure t
-  :mode (("\\.yml\\'"       . yaml-mode)))
+  :mode ("\\.yml\\'"       . yaml-mode))
 
 ; asciidoc mode
 (use-package adoc-mode
   :ensure t
-  :mode (("\\.adoc\\'"      . adoc-mode)))
+  :mode ("\\.adoc\\'"      . adoc-mode))
 
 ; LUA mode
 (use-package lua-mode
   :ensure t
-  :mode (("\\.lua\\'"      . lua-mode)))
+  :mode ("\\.lua\\'"      . lua-mode))
+
+; Docker-file mode
+(use-package dockerfile-mode
+  :ensure t
+  :mode ("Dockerfile\\'"   . dockerfile-mode))
 
 (use-package flycheck
   :ensure t
