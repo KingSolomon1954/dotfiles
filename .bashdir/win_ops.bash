@@ -4,7 +4,7 @@
 #
 # --------------------------------------------------
 
-alias 1='wmctrl -a "Upper Left"'
-alias 2='wmctrl -a "Lower Left"'
-alias 3='wmctrl -a "Upper Right"'
-alias 4='wmctrl -a "Lower Right"'
+alias 1='to_win.bash "Upper Left"'
+alias 2='to_win.bash "Lower Left"'
+alias 3='to_win.bash "Upper Right"'
+alias 4='to_win.bash "Lower Right"'
