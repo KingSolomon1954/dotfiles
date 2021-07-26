@@ -40,4 +40,10 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+; Python mode
+(use-package python-mode
+  :ensure t
+  :custom
+  (custom-python-interpreter "python3"))
+
 (provide 'init-json)
