@@ -7,7 +7,7 @@
 sourceIt /usr/local/etc/bash_completion.d/git-completion.bash
 
 alias gs="git status"
-alias gc="git commit"
+alias gc="git commit -m"
 alias gcw="git commit -m \"work-in-progress\""
 alias gac="git add -A && git commit -m "
 alias gp="git pull --recurse-submodules"

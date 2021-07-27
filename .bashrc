@@ -48,6 +48,7 @@ sourceIt "${_bd}/vsc_setup.bash"
 sourceIt "${_bd}/android_setup.bash"
 sourceIt "${_bd}/docker_setup.bash"
 sourceIt "${_bd}/dotfiles_setup.bash"
+sourceIt "${_bd}/win_ops.bash"
 
 # --------------------------------------------------
 

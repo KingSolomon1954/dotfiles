@@ -50,7 +50,7 @@
       ; (set-face-background 'hl-line "purple")
     ; except in a terminal window
     ; (hl-line-mode -1))) but this does nothing
-    (set-face-background 'hl-line "white")))
+    (set-face-background 'hl-line "color-17")))
     ; (global-hl-line-mode -1)))
 
 ; Run for already exisiting frames
