@@ -47,6 +47,7 @@
 (global-set-key (kbd "C-x r q")       'copy-rectangle-as-kill)
 (global-set-key (kbd "C-x Z")         'repeat-complex-command)
 (global-set-key (kbd "C-'")           'comment-dwim)
+(global-set-key (kbd "C-]")           'er/expand-region)
 
 ; Emacs version 24 and later have scroll-down-command
 (if (fboundp 'scroll-down-command)
