@@ -44,4 +44,7 @@
 ; (use-package rainbow-delimiters
 ;   :ensure t)
 
+(setq dired-listing-switches
+    "-AGFhlv --group-directories-first --time-style=long-iso")
+
 (provide 'init-general)
