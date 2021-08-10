@@ -139,6 +139,3 @@ if have xdg-open ; then
 fi
 
 # --------------------------------------------------
-
-sourceIt /usr/local/etc/bash_completion.d/brew
-

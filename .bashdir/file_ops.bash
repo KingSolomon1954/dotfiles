@@ -4,6 +4,8 @@
 #
 # --------------------------------------------------
 
+sourceIt /usr/local/etc/bash_completion.d/exa
+
 if type exa > /dev/null 2>&1 > /dev/null; then
     alias  l='exa      -F              --group-directories-first'
     alias  L='exa -la  -F              --group-directories-first'
