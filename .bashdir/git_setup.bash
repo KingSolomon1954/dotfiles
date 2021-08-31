@@ -31,6 +31,10 @@ alias glog="git log --all --oneline --decorate --graph"
 # git config -f .gitmodules submodule.docs-src/shared.branch master
 # git config -f .gitmodules submodule.docs-src/shared.update merge
 
-
+# https://betterdev.blog/handy-git-aliases/
+# https://github.com/GitAlias/gitalias
+# https://gist.github.com/robmiller/6018582
+# https://gggritso.com/human-git-aliases
+    
 # -----------------------------------------------------------
 
