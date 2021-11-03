@@ -2,7 +2,7 @@
 #
 # --------------------------------------------------
 
-HISTSIZE=5000
+HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoredups:ignorespace:erasedups
 #       A colon-separated list of values controlling  how  commands  are
@@ -20,7 +20,7 @@ HISTCONTROL=ignoredups:ignorespace:erasedups
 #       compound command are not tested, and are added  to  the  history
 #       regardless of the value of HISTCONTROL.
 
-HISTIGNORE="?":"??":pwd:"cd ..":"man bash":groups:cdl:cda:cdd:cdg:cdl:cdr:cdw
+HISTIGNORE="?":"??":"???":pwd:"cd ..":"man bash":groups:"history*"
 #       A  colon-separated list of patterns used to decide which command
 #       lines should be saved on the  history  list.   Each  pattern  is
 #       anchored  at  the  beginning of the line and must match the com‐
@@ -34,10 +34,61 @@ HISTIGNORE="?":"??":pwd:"cd ..":"man bash":groups:cdl:cda:cdd:cdg:cdl:cdr:cdw
 #       history  regardless  of  the  value  of HISTIGNORE.  The pattern
 #       matching honors the setting of the extglob shell option.
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 shopt -s cmdhist
 #       If set, bash attempts to save all lines of  a  multiple-
 #       line  command  in  the  same history entry.  This allows
 #       easy re-editing of multi-line commands.
+ 
+hist_save()
+{
+    history -a
+}
+
+hist_load()
+{
+    history -r
+}
+
+hist_find()
+{
+    grep "$@" ~/.history/*
+}
+
+hist_file()
+{
+    files="1-UpperLeft-d2 2-LowerLeft-d2 3-UpperRight-d2 4-LowerRight-d2 \
+           1-UpperLeft-d3 2-LowerLeft-d3 3-UpperRight-d3 4-LowerRight-d3"
+    PS3="Select history file: "
+    select w in ${files}; do
+        if [ ${w} ]; then
+            HISTFILE=~/.history/${w}.hist
+            break
+        fi
+    done
+    mkdir -p ~/.history
+}
+
+let _hist_count=0
+
+hist_crossing()
+{
+    let _hist_count++
+    if [ $_hist_count -gt 100 ]; then
+        let _hist_count=0
+        hist_save
+    fi
+}
+
+hist_sync()
+{
+    hist_file
+    hist_load
+}
+
+PROMPT_COMMAND="hist_crossing; $PROMPT_COMMAND"
+
+# HISTTIMEFORMAT="%y-%m-%d-%H:%M:%S "
+# history -w writes the entire history adding timestamps if configured# history -w writes the entire history adding timestamps if configured
+# history -a writes only the delta from the last -a
+# history -r loads from file but does not consider these as new entries
+# thus a history -r followed a history -a writes nothing
