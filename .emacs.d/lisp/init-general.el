@@ -14,6 +14,9 @@
 ; motion command, this sets the mark before moving point.
 (setq shift-select-mode nil)
 
+; yank also pastes from clipboard
+(setq select-enable-primary t)
+
 ; No tabs please
 (setq-default indent-tabs-mode nil)
 
