@@ -91,4 +91,8 @@
   (require 'ibuffer )
   (define-key ibuffer-mode-map (kbd "C-t") 'next-buffer))
 
+(add-hook 'python-mode-hook
+  (lambda ()
+    (define-key python-mode-map (kbd "C-j") 'backward-char)))
+
 (provide 'init-keys)
