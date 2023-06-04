@@ -35,10 +35,10 @@
   :ensure t
   :mode ("Dockerfile\\'"   . dockerfile-mode))
 
-(use-package flycheck
-  :ensure t
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+; (use-package flycheck
+;   :ensure t
+;   :config
+;   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ; Python mode
 (use-package python-mode
