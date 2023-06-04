@@ -8,7 +8,10 @@
 (use-package expand-region
   :ensure t
   :defer 10
-  :bind (("C-@" . er/expand-region)))
+  :bind (("C--" . er/expand-region)
+         ("C-=" . er/contract-region)
+         )
+  )
 
 ; Multiple cursors
 ; (use-package multiple-cursors

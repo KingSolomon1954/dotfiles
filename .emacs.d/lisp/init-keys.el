@@ -11,8 +11,8 @@
 ; ESC c-o
 ; S-C-o
 ; (global-set-key (kbd "C-+")           'text-scale-increase)
-; (global-set-key (kbd "C--")           'text-scale-decrease)
-; (global-set-key (kbd "C-<backspace>") 'my-kill-line-backwards)
+; (global-set-key (kbd "C-_")           'undo)
+; (global-set-key (kbd "C-]")           'abort-recursive-edit)
 
 ;;; Code:
 
@@ -52,8 +52,6 @@
 (global-set-key (kbd "C-x r q")       'copy-rectangle-as-kill)
 (global-set-key (kbd "C-x Z")         'repeat-complex-command)
 (global-set-key (kbd "C-'")           'comment-dwim)
-(global-set-key (kbd "C-]")           'er/expand-region)
-(global-set-key (kbd "C-[")           'er/contract-region)
 
 ; Emacs version 24 and later have scroll-down-command
 (if (fboundp 'scroll-down-command)
@@ -97,13 +95,12 @@
   (require 'ibuffer )
   (define-key ibuffer-mode-map (kbd "C-t") 'next-buffer))
 
-(progn
-  (require 'which-key ))
-(which-key-mode)
-
 (add-hook 'python-mode-hook
   (lambda ()
     (define-key python-mode-map (kbd "C-j") 'backward-char)))
+
+(use-package which-key
+  :ensure t)
 
 ;; Stall the which key window for a bit, otherwise too annoying.
 (setq which-key-idle-delay 2.0)

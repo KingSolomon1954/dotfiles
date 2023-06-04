@@ -6,7 +6,7 @@
 
 (use-package magit
   :ensure t
-  :bind (("C-x C-g" . magit-status)
+  :bind (("C-x m" . magit-status)
          ))
 
 (provide 'init-git)
