@@ -1,13 +1,20 @@
-; init-keys.el
-;
-; Mapping my keys in one spot
-;
-; ------------------------------------------------------
+;;; init-keys.el --- configuration
+
+;;; Commentary:
+
+;; Mapping my keys in one spot
+;;
+;; ------------------------------------------------------
 
 ; Possible good spare keys
 ; ESC o
 ; ESC c-o
 ; S-C-o
+; (global-set-key (kbd "C-+")           'text-scale-increase)
+; (global-set-key (kbd "C--")           'text-scale-decrease)
+; (global-set-key (kbd "C-<backspace>") 'my-kill-line-backwards)
+
+;;; Code:
 
 (global-set-key (kbd "C-,")           'ESC-prefix)
 (global-set-key (kbd "C-x u")         'universal-argument)
@@ -33,8 +40,6 @@
 (global-set-key (kbd "S-C-t")         'previous-buffer)
 (global-set-key (kbd "C-b")           'other-frame)
 (global-set-key (kbd "S-C-b")         '(lambda () (interactive) (other-frame -1)))
-(global-set-key (kbd "C-+")           'text-scale-increase)
-(global-set-key (kbd "C--")           'text-scale-decrease)
 (global-set-key (kbd "M-y")           'clipboard-yank)
 (global-set-key (kbd "S-C-y")         'yank-pop)
 (global-set-key (kbd "S-C-v")         'end-of-defun)
@@ -43,11 +48,12 @@
 (global-set-key (kbd "C-;")           'goto-prev-mark)
 (global-set-key (kbd "M-r")           'reread-buffer-no-confirm)
 (global-set-key (kbd "C-a")           'back-to-indentation-or-beginning)
-(global-set-key (kbd "C-<backspace>") 'my-kill-line-backwards)
+(global-set-key (kbd "S-C-k")         'my-kill-line-backwards)
 (global-set-key (kbd "C-x r q")       'copy-rectangle-as-kill)
 (global-set-key (kbd "C-x Z")         'repeat-complex-command)
 (global-set-key (kbd "C-'")           'comment-dwim)
 (global-set-key (kbd "C-]")           'er/expand-region)
+(global-set-key (kbd "C-[")           'er/contract-region)
 
 ; Emacs version 24 and later have scroll-down-command
 (if (fboundp 'scroll-down-command)
@@ -91,8 +97,18 @@
   (require 'ibuffer )
   (define-key ibuffer-mode-map (kbd "C-t") 'next-buffer))
 
+(progn
+  (require 'which-key ))
+(which-key-mode)
+
 (add-hook 'python-mode-hook
   (lambda ()
     (define-key python-mode-map (kbd "C-j") 'backward-char)))
 
+;; Stall the which key window for a bit, otherwise too annoying.
+(setq which-key-idle-delay 2.0)
+(setq which-key-idle-secondary-delay 0.05)
+(which-key-mode)
+
 (provide 'init-keys)
+;;; init-keys.el ends here

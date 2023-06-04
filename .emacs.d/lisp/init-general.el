@@ -1,8 +1,10 @@
-; init-general.el
-;
-; General settings, that don't fit in their file
-;
-; ------------------------------------------------------
+;;; init-general.el --- configuration
+
+;;; Commentary:
+
+;; General settings, that don't fit in their own file
+;;
+;; ------------------------------------------------------
 
 ; disable backup
 (setq backup-inhibited t)
@@ -51,3 +53,4 @@
     "-AGFhlv --group-directories-first --time-style=long-iso")
 
 (provide 'init-general)
+;;; init-general.el ends here
