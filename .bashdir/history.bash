@@ -56,6 +56,12 @@ hist_find()
 
 hist_file()
 {
+    if [ $# -gt 0 ]; then
+        HISTFILE=~/.history/${1}.hist
+        return 1        
+    fi
+    
+    # Otherwise prompt for history file
     files="1-UpperLeft-d2 2-LowerLeft-d2 3-UpperRight-d2 4-LowerRight-d2 \
            1-UpperLeft-d3 2-LowerLeft-d3 3-UpperRight-d3 4-LowerRight-d3"
     PS3="Select history file: "
@@ -68,8 +74,21 @@ hist_file()
     mkdir -p ~/.history
 }
 
-let _hist_count=0
+# hist_file_old()
+# {
+#     files="1-UpperLeft-d2 2-LowerLeft-d2 3-UpperRight-d2 4-LowerRight-d2 \
+#            1-UpperLeft-d3 2-LowerLeft-d3 3-UpperRight-d3 4-LowerRight-d3"
+#     PS3="Select history file: "
+#     select w in ${files}; do
+#         if [ ${w} ]; then
+#             HISTFILE=~/.history/${w}.hist
+#             break
+#         fi
+#     done
+#     mkdir -p ~/.history
+# }
 
+let _hist_count=0
 hist_crossing()
 {
     let _hist_count++
@@ -81,7 +100,7 @@ hist_crossing()
 
 hist_sync()
 {
-    hist_file
+    hist_file $1
     hist_load
 }
 
