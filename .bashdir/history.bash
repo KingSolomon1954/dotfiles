@@ -56,11 +56,21 @@ hist_find()
 
 hist_file()
 {
+    mkdir -p ~/.history
     if [ $# -gt 0 ]; then
-        HISTFILE=~/.history/${1}.hist
+        case $1 in
+            1) HISTFILE=~/.history/1-UpperLeft-d2.hist  ;;
+            2) HISTFILE=~/.history/2-LowerLeft-d2.hist  ;;
+            3) HISTFILE=~/.history/3-UpperRight-d2.hist ;;
+            4) HISTFILE=~/.history/4-LowerRight-d2.hist ;;
+            5) HISTFILE=~/.history/1-UpperLeft-d3.hist  ;;
+            6) HISTFILE=~/.history/2-LowerLeft-d3.hist  ;;
+            7) HISTFILE=~/.history/3-UpperRight-d3.hist ;;
+            8) HISTFILE=~/.history/4-LowerRight-d3.hist ;;
+        esac
         return 1        
     fi
-    
+
     # Otherwise prompt for history file
     files="1-UpperLeft-d2 2-LowerLeft-d2 3-UpperRight-d2 4-LowerRight-d2 \
            1-UpperLeft-d3 2-LowerLeft-d3 3-UpperRight-d3 4-LowerRight-d3"
@@ -71,22 +81,7 @@ hist_file()
             break
         fi
     done
-    mkdir -p ~/.history
 }
-
-# hist_file_old()
-# {
-#     files="1-UpperLeft-d2 2-LowerLeft-d2 3-UpperRight-d2 4-LowerRight-d2 \
-#            1-UpperLeft-d3 2-LowerLeft-d3 3-UpperRight-d3 4-LowerRight-d3"
-#     PS3="Select history file: "
-#     select w in ${files}; do
-#         if [ ${w} ]; then
-#             HISTFILE=~/.history/${w}.hist
-#             break
-#         fi
-#     done
-#     mkdir -p ~/.history
-# }
 
 let _hist_count=0
 hist_crossing()
