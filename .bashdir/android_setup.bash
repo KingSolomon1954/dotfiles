@@ -4,5 +4,5 @@
 #
 # -----------------------------------------------------------
 
-envp.append PATH "${HOME}/opt/android-sdk/tools"
-envp.append PATH "${HOME}/opt/android-sdk/platform-tools"
+ksl::envAppend -f PATH "${HOME}/opt/android-sdk/tools"
+ksl::envAppend -f PATH "${HOME}/opt/android-sdk/platform-tools"

@@ -6,12 +6,12 @@
 
 # Read in path library helper functions
 #
-if [ -f ~/.bashdir/libPath.bash ]; then
-    . ~/.bashdir/libPath.bash
+if [ -f ~/.bashdir/libEnv.bash ]; then
+    . ~/.bashdir/libEnv.bash
 fi
 
 # Construct our PATH using functions from the environment
-# variable path library. When using envp.append(), if the
+# variable path library. When using ksl::envAppend(), if the
 # given directory does not exist on the file space, then PATH
 # is left untouched. The function will alo prevent adding
 # duplicates. With this behavior, the path for all OS's and
@@ -20,24 +20,22 @@ fi
 
 # Standard system path setup here
 #
-envp.append PATH "/bin"
-envp.append PATH "/usr/bin"
-envp.append PATH "/usr/local/bin"
-envp.append PATH "/sbin"
-envp.append PATH "/usr/sbin"
-envp.append PATH "/usr/local/sbin"
-envp.append PATH "${HOME}/.local/bin"
-envp.append PATH "${HOME}/bin"
-envp.delete PATH "/usr/games"
-envp.delete PATH "/usr/local/games"
+ksl::envAppend -f PATH "/bin"
+ksl::envAppend -f PATH "/usr/bin"
+ksl::envAppend -f PATH "/usr/local/bin"
+ksl::envAppend -f PATH "/sbin"
+ksl::envAppend -f PATH "/usr/sbin"
+ksl::envAppend -f PATH "/usr/local/sbin"
+ksl::envAppend -f PATH "${HOME}/.local/bin"
+ksl::envAppend -f PATH "${HOME}/bin"
+ksl::envDelete    PATH "/usr/games"
+ksl::envDelete    PATH "/usr/local/games"
 
 # Some platform specific setup
 
-envp.prepend PATH "/usr/local/opt/m4/bin"
-envp.prepend PATH "/usr/local/opt/openssl/bin"
-envp.prepend PATH "/usr/local/opt/findutils/libexec/gnubin"
-envp.prepend PATH "/usr/local/opt/coreutils/libexec/gnubin"
-envp.prepend PATH "/usr/local/opt/grep/libexec/gnubin"
-envp.prepend PATH "/usr/local/opt/make/libexec/gnubin"
-
-# More path setup later when bashrc runs
+ksl::envPrepend -f PATH "/usr/local/opt/m4/bin"
+ksl::envPrepend -f PATH "/usr/local/opt/openssl/bin"
+ksl::envPrepend -f PATH "/usr/local/opt/findutils/libexec/gnubin"
+ksl::envPrepend -f PATH "/usr/local/opt/coreutils/libexec/gnubin"
+ksl::envPrepend -f PATH "/usr/local/opt/grep/libexec/gnubin"
+ksl::envPrepend -f PATH "/usr/local/opt/make/libexec/gnubin"

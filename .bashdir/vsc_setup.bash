@@ -4,4 +4,4 @@
 #
 # -----------------------------------------------------------
 
-envp.append PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+ksl::envAppend -f PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

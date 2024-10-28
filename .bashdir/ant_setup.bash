@@ -9,7 +9,7 @@ if isCygwin; then
     if [ ! -d ${ANT_HOME} ]; then
         unset ANT_HOME
     else
-        envp.append PATH "${ANT_HOME}/bin"
+        ksl::envAppend -f PATH "${ANT_HOME}/bin"
     fi
 fi
     

@@ -7,7 +7,7 @@
 # Figure out an alias for info command because we need to use -d args to
 # specify info directories. Tried using INFOPATH but it seems INFOPATH
 # does not honor order in a predictable way.  And yes, I tried it,
-# exaustively in all combinations.
+# exhaustively in all combinations.
 #
 # Order matters, later dirs override earlier dirs
 t_infoDirs+=" /usr/local/opt/findutils/share/info"

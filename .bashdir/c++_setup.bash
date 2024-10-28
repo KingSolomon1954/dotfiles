@@ -18,9 +18,7 @@ alias mo="make TGT=cygwin-x86 CXXDEBUG=\"-O3 -DNDEBUG\""
 #       A sample value is ``.o:~''.
 
 # Prefer to see .o's these days. So commented out.
-
-# envp.setDirMustExist "false"
-# envp.append FIGNORE ".o"
-# envp.setDirMustExist "true"
+#
+# ksl::envAppend -f FIGNORE ".o"
 
 # -----------------------------------------------------------
