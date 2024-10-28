@@ -13,6 +13,9 @@ alias gac="git add -A && git commit -m "
 alias gp="git pull --recurse-submodules"
 alias glog="git log --all --oneline --decorate --graph"
 alias glast="git log -1 HEAD"
+alias gbl="git branch --list"
+alias gsm="git switch master"
+alias gsp="git switch -"
 
 # List the files involved in latest commit or specify a commit
 # alias glsc="git show --name-only"
