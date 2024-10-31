@@ -47,21 +47,27 @@ envSep=":"
 #
 ksl::envContains()
 {
-    [ -z $1 ]   && return 1    # Empty arg, env vars can't have spaces
-    [ -z "$2" ] && return 1    # Empty arg, use quotes, support filename with spaces
-    local -rn ref=$1
-    [ -z "$ref" ] && return 1                # Empty environment var
+    [ $# -lt 2 ] && return 1        # Need two args
 
-    local pat="^${2}${envSep}"               # Front
+    [ -z "$1" ] && return 1         # Empty arg
+    [[ "$1" =~ "\W" ]] && return 1  # Name of env var must be a word
+    
+    local -rn ref="$1"
+    [ -z "$ref" ] && return 1       # Empty env var
+
+    [ -z "$2" ] && return 1         # Empty element arg
+    element=${2//:}                 # Remove any colons
+    
+    local pat="^${element}${envSep}"         # Front
     [[ ${ref} =~ ${pat} ]] && return 0       # Found it
 
-    pat="${envSep}${2}${envSep}"             # Middle
+    pat="${envSep}${element}${envSep}"       # Middle
     [[ ${ref} =~ ${pat} ]] && return 0       # Found it
 
-    pat="${envSep}${2}$"                     # End
+    pat="${envSep}${element}$"               # End
     [[ ${ref} =~ ${pat} ]] && return 0       # Found it
 
-    local pat="^${2}$"                       # Only entry
+    local pat="^${element}$"                 # Only entry
     [[ ${ref} =~ ${pat} ]] && return 0       # Found it
 }
 
@@ -104,7 +110,7 @@ ksl::envContains()
 
 ksl::envAppend()
 {
-    ksl::_envXxpend --append $*
+    ksl::_envXxpend --append "$@"
 }
 
 # -----------------------------------------------------------
@@ -118,7 +124,7 @@ ksl::envAppend()
 #
 ksl::envPrepend()
 {
-    ksl::_envXxpend --prepend $*
+    ksl::_envXxpend --prepend "$@"
 }
 
 # -----------------------------------------------------------
@@ -142,6 +148,7 @@ ksl::_envXxpend()
             -f|--file-must-exist) mustExist=true;;
             --append)             append=true;;
             --prepend)            append=false;;
+            '') ;;
             -*) echo "Invalid option \"$1\" for envAppend() or envPrepend()" 1>&2
                 return 1;;
             *) local val=${1//${envSep}/}  # strip any leading/trailing ":"
@@ -166,20 +173,20 @@ ksl::_envXxpend()
     
     # echo "allowDups: ${allowDups}"
     # echo "mustExist: ${mustExist}"
-    # echo "     args: $args"
+    # echo "     args: ${args}"
     # echo "  varName: ${varName}"
     # echo "  element: ${element}"
     
-    [ -z ${varName} ] || [ -z "${element}" ] && return 1 # missing args
+    [ -z "${varName}" ] || [ -z "${element}" ] && return 1 # missing args
 
     if ! ${allowDups}; then
-        if ksl::envContains ${varName} "${element}"; then
+        if ksl::envContains "${varName}" "${element}"; then
             return 1;
         fi
     fi
 
     if ${mustExist}; then
-        [ ! -f "${element}" -a ! -d "${element}" ] && return 1
+        [ ! -f "${element}" ] && [ ! -d "${element}" ] && return 1
     fi
 
     local -n ref="${varName}"
@@ -201,15 +208,15 @@ ksl::_envXxpend()
 #
 ksl::envDelete()
 {
-    [ -z $1 ] || [ -z "$2" ] && return 1 # no args, nothing appended
+    [ -z "$1" ] || [ -z "$2" ] && return 1 # no args, nothing appended
     local -n ref=$1
 
-    local match=$2            # If $2 has colons, it screws up the sub
-    match=${match#${envSep}}  # Clean up leading colon if there
-    match=${match%${envSep}}  # Clean up trailing colon if there
+    local match="$2"            # If $2 has colons, it screws up the sub
+    match=${match#"${envSep}"}  # Clean up leading colon if there
+    match=${match%"${envSep}"}  # Clean up trailing colon if there
 
-    ref="${ref//${match}/}"   # Sub it out
-    ksl::_envColonTrimPath $1
+    ref="${ref//${match}/}"     # Sub it out
+    ksl::_envColonTrimPath "$1"
 }
 
 # -----------------------------------------------------------
@@ -222,12 +229,15 @@ ksl::envDelete()
 #
 ksl::envDeleteFirst()
 {
-    [ -z $1 ] && return 1 # no args
-    local -n ref=$1
+    [ -z "$1" ] && return 1    # Missing args
+    local -n ref="$1"
     [ -z "$ref" ] && return 1  # Empty environment var
+
     ref=${ref}${envSep}        # Add sentinel in case single frag
-    pattern="*${envSep}"
-    ref=${ref#${pattern}}      # Delete first including separator
+
+    # shellcheck disable=SC2295
+    ref=${ref#*${envSep}}      # Delete first including separator
+    # shellcheck disable=SC2295
     ref=${ref%${envSep}}       # Remove sentinel
     return 0
 }
@@ -242,13 +252,15 @@ ksl::envDeleteFirst()
 #
 ksl::envDeleteLast()
 {
-    [ -z $1 ] && return 1 # no args
-    local -n v=$1
-    [ -z "$v" ] && return 1  # Empty environment var
-    v=${envSep}${v}          # Add sentinel in case single frag
-    pattern="${envSep}*"
-    v=${v%${pattern}}        # Delete first including separator
-    v=${v#${envSep}}         # Remove sentinel
+    [ -z "$1" ] && return 1      # Missing args
+    local -n ref=$1
+    [ -z "$ref" ] && return 1    # Empty environment var
+    ref=${envSep}${ref}          # Add sentinel in case single frag
+    
+    # shellcheck disable=SC2295
+    ref=${ref%${envSep}*}        # Delete last including separator
+    # shellcheck disable=SC2295
+    ref=${ref#${envSep}}         # Remove sentinel
     return 0
 }
 
@@ -258,7 +270,9 @@ ksl::_envColonTrimPath ()
 {
     local -n ref=${1}
     ref=${ref//${envSep}${envSep}/${envSep}}  # Clean up double colons
+    # shellcheck disable=SC2295
     ref=${ref#${envSep}}                      # Clean up first colon
+    # shellcheck disable=SC2295
     ref=${ref%${envSep}}                      # Clean up trailing colon
 }
 
