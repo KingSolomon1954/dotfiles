@@ -59,21 +59,21 @@ hist_file()
     mkdir -p ~/.history
     if [ $# -gt 0 ]; then
         case $1 in
-            1) HISTFILE=~/.history/1-UpperLeft-d2.hist  ;;
-            2) HISTFILE=~/.history/2-LowerLeft-d2.hist  ;;
-            3) HISTFILE=~/.history/3-UpperRight-d2.hist ;;
-            4) HISTFILE=~/.history/4-LowerRight-d2.hist ;;
-            5) HISTFILE=~/.history/1-UpperLeft-d3.hist  ;;
-            6) HISTFILE=~/.history/2-LowerLeft-d3.hist  ;;
-            7) HISTFILE=~/.history/3-UpperRight-d3.hist ;;
-            8) HISTFILE=~/.history/4-LowerRight-d3.hist ;;
+            1) HISTFILE=~/.history/1-left-col.hist  ;;
+            2) HISTFILE=~/.history/2-left-col.hist  ;;
+            3) HISTFILE=~/.history/3-left-col.hist  ;;
+            4) HISTFILE=~/.history/4-left-col.hist  ;;
+            5) HISTFILE=~/.history/5-right-col.hist ;;
+            6) HISTFILE=~/.history/6-right-col.hist ;;
+            7) HISTFILE=~/.history/7-right-col.hist ;;
+            8) HISTFILE=~/.history/8-right-col.hist ;;
         esac
         return 1        
     fi
 
     # Otherwise prompt for history file
-    files="1-UpperLeft-d2 2-LowerLeft-d2 3-UpperRight-d2 4-LowerRight-d2 \
-           1-UpperLeft-d3 2-LowerLeft-d3 3-UpperRight-d3 4-LowerRight-d3"
+    files="1-left-col 2-lef-col 3-left-col 4-left-col \
+           5-right-col 6-right-col 7-right-col 8-right-col"
     PS3="Select history file: "
     select w in ${files}; do
         if [ ${w} ]; then
@@ -87,7 +87,7 @@ let _hist_count=0
 hist_crossing()
 {
     let _hist_count++
-    if [ $_hist_count -gt 100 ]; then
+    if [ $_hist_count -gt 20 ]; then
         let _hist_count=0
         hist_save
     fi

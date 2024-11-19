@@ -52,9 +52,12 @@ sourceIt "${_bd}/win_ops.bash"
 
 # --------------------------------------------------
 
-unset _bd
-unset sourceIt
-
 if type neofetch > /dev/null 2>&1 > /dev/null; then
     neofetch
 fi
+
+sourceIt ~/bin/my-terminal-setup.bash
+
+unset _bd
+unset sourceIt
+

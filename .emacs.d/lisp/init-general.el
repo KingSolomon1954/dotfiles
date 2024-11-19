@@ -8,6 +8,7 @@
 
 ; disable backup
 (setq backup-inhibited t)
+
 ; disable auto save
 (setq auto-save-default nil)
 
@@ -22,7 +23,7 @@
 ; No tabs please
 (setq-default indent-tabs-mode nil)
 
-; Type opening brace and closing brace appears too
+; Type opening brace, then the closing brace appears too
 ; (electric-pair-mode t)
 
 ; Highlight matching parens when cursor is behind one of them
@@ -32,8 +33,9 @@
 ;     (set-face-attribute 'default t :font "lucidasanstypewriter-11" )
 ; )
 
+; This causes compile errors on emacs 1.29
 ; Answer "y" instead "yes"
-(fset 'yes-or-no-p 'y-or-n-p)
+; (fset 'yes-or-no-p 'y-or-n-p)
 
 ; Seems this is on by default. Don't want it.
 (setq-default abbrev-mode nil)

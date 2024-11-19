@@ -23,7 +23,7 @@
     (set-face-attribute 'default nil :height 110))
 
 (if (eq system-type 'gnu/linux)
-    (set-face-attribute 'default nil :height 100))
+    (set-face-attribute 'default nil :height 120))
 
 (if (eq system-type 'windows-nt)
     (set-face-attribute 'default nil :height 90))
