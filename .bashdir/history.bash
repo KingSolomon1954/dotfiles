@@ -46,7 +46,7 @@ hist_save()
 
 hist_load()
 {
-    history -r
+    history -n
 }
 
 hist_find()
