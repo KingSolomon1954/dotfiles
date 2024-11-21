@@ -4,7 +4,8 @@
 #
 # -----------------------------------------------------------
 
-alias  m="make TGT=cygwin-x86"
+alias  m="make"
+# alias  m="make TGT=cygwin-x86"
 alias md="make TGT=cygwin-x86 CXXDEBUG=\"-ggdb -DGDEBUG\""
 alias mo="make TGT=cygwin-x86 CXXDEBUG=\"-O3 -DNDEBUG\""
 

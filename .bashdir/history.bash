@@ -20,7 +20,9 @@ HISTCONTROL=ignoredups:ignorespace:erasedups
 #       compound command are not tested, and are added  to  the  history
 #       regardless of the value of HISTCONTROL.
 
-HISTIGNORE="?":"??":"???":pwd:"cd ..":"man bash":groups:"history*"
+HISTIGNORE="?":"??":"???":pwd:"cd ..":"cdg ?":"man *":groups:"history*"
+HISTIGNORE+=":""git push":"git pull":"git switch -":"git add -A"
+HISTIGNORE+=":""podman ps":"podman images":"make":"make -n"
 #       A  colon-separated list of patterns used to decide which command
 #       lines should be saved on the  history  list.   Each  pattern  is
 #       anchored  at  the  beginning of the line and must match the com‐
@@ -46,7 +48,7 @@ hist_save()
 
 hist_load()
 {
-    history -n
+    history -r
 }
 
 hist_find()
@@ -68,7 +70,7 @@ hist_file()
             7) HISTFILE=~/.history/7-right-col.hist ;;
             8) HISTFILE=~/.history/8-right-col.hist ;;
         esac
-        return 1        
+        return 0
     fi
 
     # Otherwise prompt for history file
