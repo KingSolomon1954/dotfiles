@@ -101,7 +101,12 @@ hist_sync()
     hist_load
 }
 
-PROMPT_COMMAND="hist_crossing; $PROMPT_COMMAND"
+PROMPT_COMMAND="hist_crossing"
+PROMPT_DIRTRIM=5
+# If set to a number greater than zero, the value is used as the number
+# of trailing directory components to retain when expanding the \w and
+# \W prompt string escapes (see PROMPTING below).  Characters removed
+# are replaced with an ellipsis.
 
 # HISTTIMEFORMAT="%y-%m-%d-%H:%M:%S "
 # history -w writes the entire history adding timestamps if configured# history -w writes the entire history adding timestamps if configured
