@@ -20,9 +20,8 @@ HISTCONTROL=ignoredups:ignorespace:erasedups
 #       compound command are not tested, and are added  to  the  history
 #       regardless of the value of HISTCONTROL.
 
-HISTIGNORE="?":"??":"???":pwd:"cd ..":"cdg ?":"man *":groups:"history*"
-HISTIGNORE+=":""git push":"git pull":"git switch -":"git add -A"
-HISTIGNORE+=":""podman ps":"podman images":"make":"make -n"
+HISTIGNORE="?":"??":"???":"cd ..":"cdg ?":"man *":groups:"history*"
+# HISTIGNORE+=":""git push":"git pull":"git switch -":"git add -A"
 #       A  colon-separated list of patterns used to decide which command
 #       lines should be saved on the  history  list.   Each  pattern  is
 #       anchored  at  the  beginning of the line and must match the com‐
@@ -37,8 +36,8 @@ HISTIGNORE+=":""podman ps":"podman images":"make":"make -n"
 #       matching honors the setting of the extglob shell option.
 
 shopt -s cmdhist
-#       If set, bash attempts to save all lines of  a  multiple-
-#       line  command  in  the  same history entry.  This allows
+#       If set, bash attempts to save all lines of a multiple-
+#       line command in the same history entry. This allows
 #       easy re-editing of multi-line commands.
  
 hist_save()

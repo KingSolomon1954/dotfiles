@@ -27,6 +27,16 @@ bind '"\C-j": backward-char'
 bind '"\C-g": forward-word'
 bind '"\C-h": backward-word'
 bind '"\C-i": complete'
+bind '"\C-o": set-mark'
+bind '"\C-w": copy-region-as-kill'
+
+# default bind '"\C-x\C-u": undo'
+# default bind '"\C-]": character-search'
+
+# Unable to change C-u, tried all of these
+# bind -u unix-line-discard
+# bind -r '\C-u'
+# bind '"\C-u": character-search'
 
 # --------------------------------------------------
 #
