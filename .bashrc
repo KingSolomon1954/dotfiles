@@ -54,6 +54,8 @@ sourceIt "${_bd}/win_ops.bash"
 
 if type neofetch > /dev/null 2>&1 > /dev/null; then
     neofetch
+elif type screenfetch > /dev/null 2>&1 > /dev/null; then
+    screenfetch
 fi
 
 sourceIt ~/bin/my-terminal-setup.bash
